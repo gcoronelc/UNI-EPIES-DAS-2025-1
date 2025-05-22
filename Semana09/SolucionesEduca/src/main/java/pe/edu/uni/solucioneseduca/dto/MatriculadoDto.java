@@ -14,6 +14,7 @@ import lombok.ToString;
  * @facebook www.facebook.com/groups/desarrollasoftware/
  * @cursos gcoronelc.github.io
  */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -26,5 +27,8 @@ public class MatriculadoDto {
 	private String fechaMatricula;
 	private double precio;
 	private int cuotas;
-
+	private double cancelado;
+	private double deuda;
+	private int nota;
+	
 }
