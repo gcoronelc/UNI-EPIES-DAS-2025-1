@@ -9,8 +9,9 @@ go
 
 
 declare @curso int, @alumno int;
-set @curso = 2;
-set @alumno = 1;
+set @curso = 1;
+set @alumno = 2;
+select * from CURSO where cur_id = @curso;
 select * from MATRICULA where cur_id = @curso and alu_id = @alumno;
 select * from PAGO where cur_id = @curso and alu_id = @alumno;
 GO

@@ -10,11 +10,11 @@ public class PruebaMatricula10MatriculaOk {
 			// Datos
 			MatriculadoDto bean = new MatriculadoDto();
 			bean.setIdEmpleado(3); // Pasa
-			bean.setIdAlumno(6); //  Pasa
+			bean.setIdAlumno(8); //  Pasa
 			bean.setIdCurso(1); //  pasa
 			bean.setTipoMatricula("REGULAR"); // pasa
-			bean.setPrecio(1000.0);
-			bean.setCuotas(2);
+			bean.setPrecio(10000.0);
+			bean.setCuotas(20);
 			// Proceso
 			ProcesosSeervice procesosSeervice;
 			procesosSeervice = new ProcesosSeervice();

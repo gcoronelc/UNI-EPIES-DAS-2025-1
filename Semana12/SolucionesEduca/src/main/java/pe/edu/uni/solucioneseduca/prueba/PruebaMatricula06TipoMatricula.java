@@ -10,7 +10,7 @@ public class PruebaMatricula06TipoMatricula {
 			// Datos
 			MatriculadoDto bean = new MatriculadoDto();
 			bean.setIdEmpleado(3); // Pasa
-			bean.setIdAlumno(6); //  Pasa
+			bean.setIdAlumno(8); //  Pasa
 			bean.setIdCurso(1); //  pasa
 			bean.setTipoMatricula("LIBRE"); // NO pasa
 			// Proceso

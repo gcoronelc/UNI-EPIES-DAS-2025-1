@@ -1,5 +1,7 @@
 package pe.edu.uni.solucioneseduca;
 
+import pe.edu.uni.solucioneseduca.view.MDIView;
+
 /**
  *
  * @author Eric Gustavo Coronel Castillo
@@ -12,9 +14,7 @@ package pe.edu.uni.solucioneseduca;
 public class ClasePrincipal {
 	
 	public static void main(String[] args) {
-		
-		
-		
+		MDIView.main(args);		
 	}
 
 }
