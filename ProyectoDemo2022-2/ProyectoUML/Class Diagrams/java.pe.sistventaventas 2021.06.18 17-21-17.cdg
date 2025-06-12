@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="java.pe.sistventaventas">
+  <ClassDiagramComponents>
+    <Class name="ClienteDto" package="pe.sistventaventas.dto" visibility="public" xPosition="702.0" yPosition="93.0">
+      <Fields>
+        <Field name="idcliente" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="dni" type="String" visibility="private"/>
+        <Field name="iddistrito" type="int" visibility="private"/>
+        <Field name="direccion" type="String" visibility="private"/>
+        <Field name="telefono" type="String" visibility="private"/>
+        <Field name="correo" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getIdcliente" returnType="int" visibility="public"/>
+        <Method name="setIdcliente" returnType="void" visibility="public">
+          <Argument type="int" name="idcliente"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getApellido" returnType="String" visibility="public"/>
+        <Method name="setApellido" returnType="void" visibility="public">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="getDni" returnType="String" visibility="public"/>
+        <Method name="setDni" returnType="void" visibility="public">
+          <Argument type="String" name="dni"/>
+        </Method>
+        <Method name="getIddistrito" returnType="int" visibility="public"/>
+        <Method name="setIddistrito" returnType="void" visibility="public">
+          <Argument type="int" name="iddistrito"/>
+        </Method>
+        <Method name="getDireccion" returnType="String" visibility="public"/>
+        <Method name="setDireccion" returnType="void" visibility="public">
+          <Argument type="String" name="direccion"/>
+        </Method>
+        <Method name="getTelefono" returnType="String" visibility="public"/>
+        <Method name="setTelefono" returnType="void" visibility="public">
+          <Argument type="String" name="telefono"/>
+        </Method>
+        <Method name="getCorreo" returnType="String" visibility="public"/>
+        <Method name="setCorreo" returnType="void" visibility="public">
+          <Argument type="String" name="correo"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AbstractService" package="pe.sistventaventas.service" visibility="public" xPosition="98.0" yPosition="93.0">
+      <Fields>
+        <Field name="code" type="int" visibility="private"/>
+        <Field name="message" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getCode" returnType="int" visibility="public"/>
+        <Method name="setCode" returnType="void" visibility="public">
+          <Argument type="int" name="code"/>
+        </Method>
+        <Method name="getMessage" returnType="String" visibility="public"/>
+        <Method name="setMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ClienteService" package="pe.sistventaventas.service" visibility="public" xPosition="197.0" yPosition="435.0">
+      <Fields>
+        <Field name="queryBase" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="leerTodos" returnType="List&lt;ClienteDto&gt;" visibility="public"/>
+        <Method name="leerTodos" returnType="List&lt;ClienteDto&gt;" visibility="public">
+          <Argument type="ClienteDto" name="bean"/>
+        </Method>
+        <Method name="leerPorId" returnType="ClienteDto" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="grabar" returnType="int" visibility="public">
+          <Argument type="ClienteDto" name="bean"/>
+        </Method>
+        <Method name="actualizar" returnType="int" visibility="public">
+          <Argument type="ClienteDto" name="bean"/>
+        </Method>
+        <Method name="eliminar" returnType="int" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="ICrud" package="pe.sistventaventas.service" visibility="public" xPosition="425.0" yPosition="93.0">
+      <Methods>
+        <Method name="leerTodos" returnType="List&lt;T&gt;" visibility="package"/>
+        <Method name="leerTodos" returnType="List&lt;T&gt;" visibility="package">
+          <Argument type="T" name="bean"/>
+        </Method>
+        <Method name="leerPorId" returnType="T" visibility="package">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="grabar" returnType="int" visibility="package">
+          <Argument type="T" name="bean"/>
+        </Method>
+        <Method name="actualizar" returnType="int" visibility="package">
+          <Argument type="T" name="bean"/>
+        </Method>
+        <Method name="eliminar" returnType="int" visibility="package">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="pe.sistventaventas.service.ClienteService" target="pe.sistventaventas.service.ICrud"/>
+    <UseRelation source="pe.sistventaventas.service.ClienteService" target="pe.sistventaventas.dto.ClienteDto" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pe.sistventaventas.service.ClienteService" target="pe.sistventaventas.service.AbstractService"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

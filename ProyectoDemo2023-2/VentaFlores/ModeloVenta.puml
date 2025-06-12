@@ -1,0 +1,12 @@
+@startuml
+class java.sql.Connection
+class java.sql.DriverManager
+class java.sql.SQLException
+class java.util.ArrayList
+class java.util.List
+class pe.edu.uni.ventaflores.VentaFlores
+class pe.edu.uni.ventaflores.db.AccesoDB
+class pe.edu.uni.ventaflores.model.DetalleVenta
+class pe.edu.uni.ventaflores.model.Venta
+class pe.edu.uni.ventaflores.pruebas.Prueba01
+@enduml

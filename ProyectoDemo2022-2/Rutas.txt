@@ -1,0 +1,10 @@
+ANALISIS DE RUTA
+---------------------------------------------------
+Origen: ciudad de salida
+Destino: ciudad de llegada
+Duración: en formato de hora de 24
+Precio1
+Precio2
+Precio3
+
+
