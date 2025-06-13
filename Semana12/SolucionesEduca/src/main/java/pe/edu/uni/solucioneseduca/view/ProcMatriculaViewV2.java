@@ -1,17 +1,34 @@
 package pe.edu.uni.solucioneseduca.view;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import pe.edu.uni.solucioneseduca.controller.ComboController;
 import pe.edu.uni.solucioneseduca.controller.ProcesosController;
+import pe.edu.uni.solucioneseduca.dto.ComboDto;
 import pe.edu.uni.solucioneseduca.dto.MatriculadoDto;
 
-public class ProcMatriculaView extends javax.swing.JInternalFrame {
+public class ProcMatriculaViewV2 extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ProcMatriculaView
-     */
-    public ProcMatriculaView() {
+    private ComboController comboController;
+    
+    
+    public ProcMatriculaViewV2() {
         initComponents();
+        comboController = new ComboController();
+        llenarCombos();
     }
+    
+    private void llenarCombos(){
+        // Combo de cursos
+        List<ComboDto> cursos = comboController.getCursos();
+        cboCurso.removeAllItems();
+        for (ComboDto curso : cursos) {
+            cboCurso.addItem(curso);
+        }
+        cboCurso.setSelectedIndex(-1);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,19 +44,19 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
         btnCerrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtCurso = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtAlumno = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtCuotas = new javax.swing.JTextField();
         cboTipo = new javax.swing.JComboBox<>();
+        cboCurso = new javax.swing.JComboBox<>();
+        cboAlumno = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setMaximizable(true);
-        setTitle("Matricula");
+        setTitle("Matricula V2");
 
         btnProcesar.setBackground(new java.awt.Color(153, 255, 204));
         btnProcesar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -85,12 +102,8 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Curso ID");
 
-        txtCurso.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Alumno ID");
-
-        txtAlumno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Tipo matricula");
@@ -99,6 +112,8 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
         jLabel4.setText("Precio");
 
         txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPrecio.setDisabledTextColor(new java.awt.Color(0, 102, 204));
+        txtPrecio.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Cuotas");
@@ -108,6 +123,15 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
         cboTipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "REGULAR", "MEDIABECA", "BECA" }));
 
+        cboCurso.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cboCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboCursoActionPerformed(evt);
+            }
+        });
+
+        cboAlumno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -116,13 +140,9 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cboAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -130,24 +150,30 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPrecio))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(151, Short.MAX_VALUE))
+                        .addComponent(txtCuotas))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(146, 146, 146))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(cboCurso)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboAlumno))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
@@ -160,7 +186,7 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,10 +217,13 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
 
    private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
        try {
+           // Combos
+           ComboDto cursoDto = (ComboDto) cboCurso.getSelectedItem();
+           ComboDto alumnoDto = (ComboDto) cboAlumno.getSelectedItem();
            // Datos
            MatriculadoDto bean = new MatriculadoDto();
-           bean.setIdCurso(Integer.parseInt(txtCurso.getText()));
-           bean.setIdAlumno(Integer.parseInt(txtAlumno.getText()));
+           bean.setIdCurso(cursoDto.getId());
+           bean.setIdAlumno(alumnoDto.getId());
            bean.setCuotas(Integer.parseInt(txtCuotas.getText()));
            bean.setPrecio(Double.parseDouble(txtPrecio.getText()));
            bean.setTipoMatricula(cboTipo.getSelectedItem().toString());
@@ -208,10 +237,32 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
        }
    }//GEN-LAST:event_btnProcesarActionPerformed
 
+    private void cboCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCursoActionPerformed
+        // Inicio
+        txtPrecio.setText("");
+        cboAlumno.removeAllItems();
+        // Control
+        int index = cboCurso.getSelectedIndex();
+        if(index == -1){
+            return;
+        }
+        // Precio
+        ComboDto dto = (ComboDto) cboCurso.getSelectedItem();
+        txtPrecio.setText(dto.getBag());
+        // Alumnos
+        List<ComboDto> alumnos = comboController.getAlumnos(dto.getId());
+        for (ComboDto alumno : alumnos) {
+            cboAlumno.addItem(alumno);
+        }
+        cboAlumno.setSelectedIndex(-1);
+    }//GEN-LAST:event_cboCursoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnProcesar;
+    private javax.swing.JComboBox<ComboDto> cboAlumno;
+    private javax.swing.JComboBox<ComboDto> cboCurso;
     private javax.swing.JComboBox<String> cboTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -220,9 +271,7 @@ public class ProcMatriculaView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtAlumno;
     private javax.swing.JTextField txtCuotas;
-    private javax.swing.JTextField txtCurso;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }
