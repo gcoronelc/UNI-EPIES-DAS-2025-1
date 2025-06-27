@@ -24,6 +24,7 @@ public class MatriculadoDto {
 	private int idCurso;
 	private int idAlumno;
 	private int idEmpleado;
+        private String nombre;
 	private String tipoMatricula;
 	private String fechaMatricula;
 	private double precio;

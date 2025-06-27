@@ -42,6 +42,8 @@ public class MDIView extends javax.swing.JFrame {
         menuProcesos = new javax.swing.JMenu();
         menuProcesosMatricula = new javax.swing.JMenuItem();
         menuProcesosMatriculaV2 = new javax.swing.JMenuItem();
+        menuConsultas = new javax.swing.JMenu();
+        menuConsultasMatriculados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EDUCA V2");
@@ -93,6 +95,18 @@ public class MDIView extends javax.swing.JFrame {
 
         menuBar.add(menuProcesos);
 
+        menuConsultas.setText("Consultas");
+
+        menuConsultasMatriculados.setText("Matriculados");
+        menuConsultasMatriculados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultasMatriculadosActionPerformed(evt);
+            }
+        });
+        menuConsultas.add(menuConsultasMatriculados);
+
+        menuBar.add(menuConsultas);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,6 +149,17 @@ public class MDIView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuProcesosMatriculaV2ActionPerformed
 
+    private void menuConsultasMatriculadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasMatriculadosActionPerformed
+        JInternalFrame view = new FormConMatriculados();
+        desktopPane.add(view);
+        view.setVisible(true);
+        try {
+            view.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MDIView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_menuConsultasMatriculadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -175,6 +200,8 @@ public class MDIView extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuConsultas;
+    private javax.swing.JMenuItem menuConsultasMatriculados;
     private javax.swing.JMenu menuProcesos;
     private javax.swing.JMenuItem menuProcesosMatricula;
     private javax.swing.JMenuItem menuProcesosMatriculaV2;
